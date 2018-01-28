@@ -3,8 +3,12 @@ import { PersonService } from './PersonService';
 
 @Component({
   selector: 'ilk-angular',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: "./app.component.html",
+  styles: [`
+    .completed{
+      text-decoration:line-through;
+    }
+  `]
 })
 export class AppComponent {
   people = [];
@@ -13,7 +17,15 @@ export class AppComponent {
     this.people = personService.People;
   }
 
+  PeopelList = [];
   SayMyName($event) {
-    console.log(`Name:${$event.name} Surname:${$event.surname}`);
+    var people = { name: $event.name, surname: $event.surname, state: "completed" };
+    if (!this.PeopelList.find(res => res.name == people.name)) {
+      this.PeopelList.push(people);
+    }
+  }
+
+  clearList() {
+    this.PeopelList = [];
   }
 }

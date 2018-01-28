@@ -1,4 +1,13 @@
 <deneme *ngFor="let person of this.people" [personData]="person" (ShowName)="SayMyName($event)"></deneme>
-<ul>
-    <li *ngFor="let person of this.people">{{person.name}} {{person.surname}}</li>
-</ul>
+<br>
+<br>
+<br>
+<span *ngIf="this.PeopelList.length>0">
+    Eklenen Kişi sayısı : {{this.PeopelList.length}}
+    <input type="button" value="Temizle" (click)="clearList()">
+    <ul>
+        <li *ngFor="let person of this.PeopelList">
+            <span [ngClass]="person.state">{{person.name}} {{person.surname}}</span>
+        </li>
+    </ul>
+</span>
