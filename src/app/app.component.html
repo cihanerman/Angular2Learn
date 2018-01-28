@@ -1,1 +1,4 @@
-<h3>Angular Eğitimi</h3>
+<deneme *ngFor="let person of this.people" [personData]="person" (ShowName)="SayMyName($event)"></deneme>
+<ul>
+    <li *ngFor="let person of this.people">{{person.name}} {{person.surname}}</li>
+</ul>
