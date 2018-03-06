@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from "@angular/http";
+import "rxjs/add/operator/map";
+import { Observable } from "rxjs/Observable";
+
 
 @Injectable()
 export class PersonService {
-    private _people = [];
+    People: PersonModel[];
 
-    get People() {
-        return this._people;
+    getObservable(){
+        return this.http.request("./app/data.json")
+        .map((response: Response) => <PersonModel[]>response.json());
     }
 
-
-    set People(allPerson) {
-        this._people = allPerson;
+    constructor(private http: Http) {
+        // http.request("./app/data.json")
+        //     .map((response: Response) => <PersonModel[]>response.json())
+        //     .subscribe(response => this.People = response,
+        //     err => console.log(err),
+        //     () => console.log("OK"));
     }
+}
+export class PersonModel {
 
-    constructor() {
-        this._people = [
-            { name: "Cihan", surname: "Erman" },
-            { name: "Fatma", surname: "Erman" },
-            { name: "Aysın", surname: "Erman" },
-            { name: "Erkan", surname: "Erman" },
-            { name: "Hiçkimse", surname: "Erman" }
-        ]
+    constructor(name: string, surname: string) {
+
     }
 }

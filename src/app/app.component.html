@@ -1,4 +1,4 @@
-<deneme *ngFor="let person of this.people" [personData]="person" (ShowName)="SayMyName($event)"></deneme>
+<deneme *ngFor="let person of this.observablePeople | async" [personData]="person" (ShowName)="SayMyName($event)"></deneme>
 <br>
 <br>
 <br>

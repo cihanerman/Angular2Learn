@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { deneme } from "./deneme";
 import { PersonService } from './PersonService';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'ilk-angular',
@@ -10,11 +12,15 @@ import { PersonService } from './PersonService';
     }
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   people = [];
-
-  constructor(personService: PersonService) {
+  observablePeople: Observable<PersonModel[]>;
+  constructor(private personService: PersonService) {
     this.people = personService.People;
+  }
+
+  GetObservablePeople() {
+    this.observablePeople = this.personService.getObservable();
   }
 
   PeopelList = [];
@@ -25,7 +31,17 @@ export class AppComponent {
     }
   }
 
+  ngOnInit() {
+    this.GetObservablePeople();
+  }
+
   clearList() {
     this.PeopelList = [];
+  }
+}
+export class PersonModel {
+
+  constructor(name: string, surname: string) {
+
   }
 }

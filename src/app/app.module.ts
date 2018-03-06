@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { HttpModule } from '@angular/http';
+
 
 
 import { AppComponent } from './app.component';
@@ -14,7 +16,7 @@ import { PersonService } from './PersonService';
     deneme
   ],
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule, FormsModule, HttpModule
   ],
   providers: [PersonService],
   bootstrap: [AppComponent]
